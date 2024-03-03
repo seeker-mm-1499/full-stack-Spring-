@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="myClient-1" class="com.jdc.spring.demo.beans.MyClient"></bean>
+
+<!-- Static Factory Method Bean -->
+<bean id="myClient-2"  name="otherBean anotherBean" factory-method="create" class="com.jdc.spring.demo.beans.MyClientStaticFactory"></bean>
+
+<!-- Instance Factory Method Bean  -->
+<bean name="myClient-3" factory-method="getBean" factory-bean="myClientInstanceFactory"></bean>
+<bean id="myClientInstanceFactory" class="com.jdc.spring.demo.beans.MyClientInstanceFactory"></bean>
+
+</beans>
