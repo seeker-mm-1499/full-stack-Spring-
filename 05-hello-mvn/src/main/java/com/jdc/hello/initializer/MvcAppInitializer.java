@@ -1,29 +1,24 @@
 package com.jdc.hello.initializer;
 
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import com.jdc.hello.config.RootConfig;
+import com.jdc.hello.config.ServletConfig;
 
-public class MvcAppInitializer extends AbstractDispatcherServletInitializer {
+public class MvcAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
-	protected WebApplicationContext createServletApplicationContext() {
-		var servletContext = new XmlWebApplicationContext();
-		servletContext.setConfigLocation("/WEB-INF/mvc-config.xml");
-		return servletContext;
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] {RootConfig.class};
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] {ServletConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
+		return new String [] {"/"};
 	}
-
-	@Override
-	protected WebApplicationContext createRootApplicationContext() {
-		var rootContext = new XmlWebApplicationContext();
-		rootContext.setConfigLocation("/WEB-INF/root-config.xml");
-		return rootContext;
-	}
-	
 }

@@ -1,3 +1,5 @@
-/home/ms/eclipse-workspace/05-hello-mvn/src/main/java/com/jdc/hello/controller/HelloController.java
-/home/ms/eclipse-workspace/05-hello-mvn/src/main/java/com/jdc/hello/initializer/MvcAppInitializer.java
-/home/ms/eclipse-workspace/05-hello-mvn/src/main/java/com/jdc/hello/model/HelloService.java
+/home/ms/git/full-stack-Spring-/05-hello-mvn/src/main/java/com/jdc/hello/config/RootConfig.java
+/home/ms/git/full-stack-Spring-/05-hello-mvn/src/main/java/com/jdc/hello/initializer/MvcAppInitializer.java
+/home/ms/git/full-stack-Spring-/05-hello-mvn/src/main/java/com/jdc/hello/model/HelloService.java
+/home/ms/git/full-stack-Spring-/05-hello-mvn/src/main/java/com/jdc/hello/config/ServletConfig.java
+/home/ms/git/full-stack-Spring-/05-hello-mvn/src/main/java/com/jdc/hello/controller/HelloController.java
