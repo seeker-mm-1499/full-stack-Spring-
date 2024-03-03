@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan base-package="com.jdc.demo"></context:component-scan>
+	<bean id="businessBean" class="com.jdc.demo.BusinessClass"></bean>
+	<bean id="loggerBean" class="com.jdc.demo.aop.MessageLogger"></bean>
+	<aop:config>
+		<aop:aspect id="logAspect" ref="loggerBean">
+			<aop:before method="doBefore"
+				pointcut="execution(public void com.jdc.demo.*.*(..)) and args(names)"
+				arg-names="names" />
+
+		</aop:aspect>
+	</aop:config>
+</beans>
