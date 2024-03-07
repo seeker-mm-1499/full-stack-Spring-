@@ -12,6 +12,7 @@ import com.jdc.hello.model.HelloService;
 @RequestMapping("/hello")
 public class HelloController {
 
+	
 	@Autowired
 	private HelloService service;
 	

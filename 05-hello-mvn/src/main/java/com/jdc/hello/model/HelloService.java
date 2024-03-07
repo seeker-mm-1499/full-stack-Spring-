@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 public class HelloService {
 
 	public String getMessage() {
+		
 		return "Hello from Root Applicaton context";
 	}
 }

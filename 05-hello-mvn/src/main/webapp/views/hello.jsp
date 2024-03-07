@@ -13,5 +13,11 @@
 	<p>
 		<c:out value="${message}"></c:out>
 	</p>
+	<ul>
+		<li>
+			<c:url value="/legacy" var="legacyLink"></c:url>
+			<a href="${legacyLink}">Legacy Controller</a>
+		</li>
+	</ul>
 </body>
 </html>
