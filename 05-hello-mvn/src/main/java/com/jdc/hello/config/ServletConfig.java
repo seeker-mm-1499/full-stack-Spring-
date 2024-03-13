@@ -10,6 +10,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.function.EntityResponse;
+import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.RouterFunctions;
+import org.springframework.web.servlet.function.ServerResponse;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.jdc.hello.controller.LeagacyController;
@@ -24,8 +28,8 @@ public class ServletConfig implements WebMvcConfigurer  {
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		//registry.addRedirectViewController("/", "/hello");
-		registry.addViewController("/").setViewName("hello");
+		registry.addRedirectViewController("/", "/hello");
+		//registry.addViewController("/").setViewName("hello");
 	}
 	/*
 	@Override
@@ -48,5 +52,12 @@ public class ServletConfig implements WebMvcConfigurer  {
 	@Bean("/legacy")
 	public LeagacyController leagacyController(){
 		return new LeagacyController();
+	}
+	
+	@Bean
+	public RouterFunction<ServerResponse> routerDemo(){
+		var message  = new Message("hello", "Hello from Router Function");
+		var response = EntityResponse.fromObject(message).build();
+		return RouterFunctions.route().GET("/router-demo",req -> response).build();
 	}
 }

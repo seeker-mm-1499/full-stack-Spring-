@@ -1,0 +1,12 @@
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/model/service/CourseCodeGenerator.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/model/dto/Result.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/controller/WelcomeController.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/ServletConfig.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/RootConfig.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/model/dto/Course.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/model/dto/Level.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/controller/InputController.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/controller/CourseController.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/controller/MultiController.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/AppInitializer.java
+/home/ms/eclipse-workspace/request-mappings/src/main/java/com/jdc/mappings/model/service/CourseService.java
