@@ -1,47 +1,56 @@
 package com.jdc.mappings.model.service;
 
-import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Service;
 
 import com.jdc.mappings.model.dto.Course;
-import com.jdc.mappings.model.dto.Level;
 
 @Service
 public class CourseService {
 	
 	@Autowired
-	private CourseCodeGenerator codeGen;
+	private SimpleJdbcInsert courseInsert;
 	
-	private List<Course> repo;
+	private RowMapper<Course> rowMapper;
 	
 	public CourseService() {
-		repo = new ArrayList<Course>();
+		rowMapper = new BeanPropertyRowMapper<>(Course.class);
 	}
 	
-	@PostConstruct
-	public void init() {
-		create(new Course("Java Basic", Level.Basic, 4, 200000));
-		create(new Course("Java Web", Level.Intermediate, 4, 300000));
-		create(new Course("Flutter", Level.Basic, 4, 200000));
-		create(new Course("Spring Web", Level.Advance, 4, 400000));
-	}
 	
-	public int create(Course c) {
-		var id = codeGen.next();
-		c.setId(id);
-		repo.add(c);
-		return id;
+	public int save(Course c) {
+		if(c.getId() > 0) {
+			courseInsert.getJdbcTemplate().update("update course set name=?, level =?, duration =?,fees =? where id=?",
+					c.getName(),
+					c.getLevel().name(),
+					c.getDuration(),
+					c.getFees(),
+					c.getId());
+			return c.getId();
+		}
+		
+		var params = new HashMap<String, Object>();
+		params.put("name", c.getName());
+		params.put("level", c.getLevel().name());
+		params.put("fees", c.getFees());
+		params.put("duration", c.getDuration());
+		
+		return courseInsert.executeAndReturnKeyHolder(params).getKey().intValue();
 	}
 	public Course findById(int id) {
-		return repo.stream().filter(c->c.getId()==id).findAny().orElse(null);
+		return courseInsert.getJdbcTemplate()
+				.query("select * from course where id=?", rowMapper, id)
+				.stream().findAny().orElse(null);
 	}
 	public List<Course> getAll(){
-		return List.copyOf(repo);
+		return courseInsert.getJdbcTemplate().query("select * from course", rowMapper);
 	}
 	
 }

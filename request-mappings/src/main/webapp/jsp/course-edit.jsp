@@ -17,31 +17,48 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	
 	<div class="container pt-4">
+		<h1>${empty course? 'Add New ': 'Edit ' }Course</h1> 
 		<div class="row">
 			<div class="col-6">
 				<c:url value="/course" var="saveUrl"></c:url>
 				<form method="post" action="${saveUrl }">
+					<c:if test="${not empty course }">		
+						<input type="hidden" name="id" value="${course.id}" />
+					</c:if>
 					<div class="mb-3">
-						<label class="form-label mb-1" for="name">Course Name</label>
-						<input id="name" name="name" type="text" placeholder="Enter Course Name" class="form-control" />
+						<label class="form-label mb-1" for="name">Course Name</label> <input
+							id="name" value="${course.name}" name="name" type="text"
+							placeholder="Enter Course Name" class="form-control" />
 					</div>
 					<div class="mb-3">
-						<label class="form-label mb-1" for="level">Course level</label>
-						<select id="level" name="level" class="form-select">
+						<label class="form-label mb-1" for="level">Course level</label> <select
+							id="level" name="level" class="form-select">
 							<option value="">Select One</option>
-							<option value="Basic">Basic</option>
-							<option value="Intermediate">Intermediate</option>
-							<option value="Advance">Advance</option>
+							<c:forEach var="item" items="${levels }">
+								<c:choose>
+									<c:when test="${course.level eq item }">
+										<option selected="selected" value="${item }">${item}</option>
+									</c:when>
+
+									<c:otherwise>
+										<option value="${item }">${item}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="mb-3">
-						<label class="form-label mb-1" for="duration">Course duration</label>
-						<input id="duration" name="duration" type="number" placeholder="Enter Course Name" class="form-control" />
+						<label class="form-label mb-1" for="duration">Course
+							duration</label> <input id="duration" value="${course.duration}"
+							name="duration" type="number" placeholder="Enter Course duration"
+							class="form-control" />
 					</div>
 					<div class="mb-3">
-						<label class="form-label mb-1" for="fees">Course fees</label>
-						<input id="fees" name="fees" type="number" placeholder="Enter Course Name" class="form-control" />
+						<label class="form-label mb-1" for="fees">Course fees</label> <input
+							id="fees" value="${course.fees}" name="fees" type="number"
+							placeholder="Enter Course fees" class="form-control" />
 					</div>
 					<div class="mb-3">
 						<button type="submit" class="btn btn-danger">Save Couse</button>

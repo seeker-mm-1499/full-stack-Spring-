@@ -1,0 +1,9 @@
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/model/StringCart.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/config/AppInitializer.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/controller/ClearCartController.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/controller/HomeController.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/config/ServletConfig.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/controller/CreateCartController.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/controller/AddItemController.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/config/RootConfig.java
+/home/ms/eclipse-workspace/scopes-demo/src/main/java/com/jdc/scopes/model/Counter.java

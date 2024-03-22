@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,20 +44,30 @@ public class CourseController {
 	}
 	@PostMapping
 	public String save(
-			@RequestParam String name,
-			@RequestParam Level level,
-			@RequestParam int duration,
-			@RequestParam int fees,
+			@ModelAttribute Course course,
 			RedirectAttributes redirect
 			) {
-		var course = new Course(name, level, duration, fees);
-		var id = service.create(course);
-		redirect.addFlashAttribute("result",new Result(Status.Success, "New course has been added!"));
+		
+		var id = service.save(course);
+		if(course.getId()!=id) {
+			redirect.addFlashAttribute("result",new Result(Status.Success, "New course has been added!"));
+		}
+		
 		return "redirect:/course/%d".formatted(id);
 	}
 	@GetMapping("{id:\\d+}")
 	public String redirect(@PathVariable int id,ModelMap model) {
 		model.put("course", service.findById(id));
 		return "course-details";
+	}
+	@ModelAttribute
+	public void modelAttrtibute(ModelMap model) {
+		model.put("levels",Level.values());
+	}
+	@ModelAttribute
+	public void loadCourse(@RequestParam(required = false) Integer id,ModelMap model) {
+		if(null != id) {
+			model.put("course", service.findById(id));
+		}
 	}
 }
